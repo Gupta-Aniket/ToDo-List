@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:notes_app/components/confirm_dialog.dart';
 import 'package:notes_app/components/todo_list.dart';
 import 'package:notes_app/data/database.dart';
 
@@ -32,15 +33,12 @@ class _HomePageState extends State<HomePage> {
     super.initState();
   }
 
-  void addNewTask() {
-    setState(() {
-      db.todoTileList.add([_controller.text, false]);
-    });
-    _controller.clear();
-
-    Navigator.of(context).pop();
-    db.updateData();
-  }
+  String fabTask = 'add';
+  Icon fabIcon = Icon(
+    Icons.add,
+    size: 30,
+    color: Colors.white70,
+  );
 
   // taking user input
   void takeUserInput() {
@@ -54,6 +52,44 @@ class _HomePageState extends State<HomePage> {
         );
       },
     );
+  }
+
+  void addNewTask() {
+    // print('add new task called');
+    setState(() {
+      db.todoTileList.add([_controller.text, false]);
+    });
+    _controller.clear();
+
+    Navigator.of(context).pop();
+    db.updateData();
+  }
+
+  void deleteAllTask() {
+    // delete all the tasks
+    showDialog(
+      context: context,
+      builder: (BuildContext) {
+        return ConfirmDialog(
+          onPressed: () {
+            setState(() {
+              db.todoTileList.clear();
+            });
+            db.updateData();
+            Navigator.pop(context);
+          },
+        );
+      },
+    );
+  }
+
+  void fabPressed(String task) {
+    if (task == 'delete') {
+      deleteAllTask();
+    } else {
+      //task == add
+      takeUserInput();
+    }
   }
 
   // checking if the box is ticked or not
@@ -87,19 +123,39 @@ class _HomePageState extends State<HomePage> {
           return TodoTile(
             task: db.todoTileList[index][0],
             value: db.todoTileList[index][1],
-            onChanged: (value) =>
-                checkBoxTicked(value, index), // idk how this works though
+            onChanged: (value) => checkBoxTicked(value, index),
+            // idk how this works though
             onDelete: (context) => deleteTask(index),
           );
         },
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: takeUserInput,
-        backgroundColor: Color(0xFFfffff),
-        child: Icon(
-          Icons.add,
-          size: 30,
-          color: Colors.white70,
+      floatingActionButton: InkWell(
+        splashColor: Colors.blueAccent,
+        onLongPress: () {
+          if (fabTask == 'add') {
+            setState(() {
+              fabIcon = Icon(
+                Icons.delete_sweep_rounded,
+                size: 30,
+                color: Colors.redAccent,
+              );
+            });
+            fabTask = 'delete';
+          } else {
+            fabTask = 'add';
+            setState(() {
+              fabIcon = Icon(
+                Icons.add,
+                size: 30,
+                color: Colors.white70,
+              );
+            });
+          }
+        },
+        child: FloatingActionButton(
+          onPressed: () => fabPressed(fabTask),
+          backgroundColor: Color(0xFFfffff),
+          child: fabIcon,
         ),
       ),
     );

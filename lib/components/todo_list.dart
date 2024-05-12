@@ -39,13 +39,16 @@ class TodoTile extends StatelessWidget {
             children: [
               Checkbox(value: value, onChanged: onChanged),
               Flexible(
-                child: Text(
-                  task,
-                  style: TextStyle(
-                      fontSize: 20,
-                      decoration: value
-                          ? TextDecoration.lineThrough
-                          : TextDecoration.none),
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 3.0),
+                  child: Text(
+                    task,
+                    style: TextStyle(
+                        fontSize: 20,
+                        decoration: value
+                            ? TextDecoration.lineThrough
+                            : TextDecoration.none),
+                  ),
                 ),
               ),
             ],

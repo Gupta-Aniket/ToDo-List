@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:notes_app/components/custom_buttons.dart';
 
 class UserInputDialog extends StatelessWidget {
   final controller;
@@ -34,28 +35,8 @@ class UserInputDialog extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  ElevatedButton(
-                    style: ButtonStyle(
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.zero,
-                        ),
-                      ),
-                    ),
-                    onPressed: onConfirm,
-                    child: Text('Confirm'),
-                  ),
-                  ElevatedButton(
-                    style: ButtonStyle(
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.zero,
-                        ),
-                      ),
-                    ),
-                    onPressed: onCancel,
-                    child: Text('Cancel'),
-                  ),
+                  DialogButton(onPressed: onConfirm, buttonText: 'Confirm'),
+                  DialogButton(onPressed: onCancel, buttonText: 'Cancel')
                 ],
               ),
             )
