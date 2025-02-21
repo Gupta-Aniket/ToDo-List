@@ -3,7 +3,6 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:notes_app/components/confirm_dialog.dart';
 import 'package:notes_app/components/todo_list.dart';
 import 'package:notes_app/data/database.dart';
-
 import 'components/dialog.dart';
 
 class HomePage extends StatefulWidget {

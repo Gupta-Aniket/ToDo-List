@@ -13,14 +13,18 @@ class DialogButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ButtonStyle(
-        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+        backgroundColor: buttonText == "Confirm" ? WidgetStateProperty.all<Color>(Colors.blue) : null,
+        shape: WidgetStateProperty.all<RoundedRectangleBorder>(
           RoundedRectangleBorder(
             borderRadius: BorderRadius.zero,
           ),
         ),
       ),
       onPressed: onPressed,
-      child: Text(buttonText),
+      child: Text(
+        style: TextStyle(fontFamily: 'Ubuntu', fontSize: 14, color: Colors.white),
+        
+        buttonText),
     );
   }
 }

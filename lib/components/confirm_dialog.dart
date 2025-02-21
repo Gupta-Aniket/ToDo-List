@@ -21,12 +21,12 @@ class ConfirmDialog extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                DialogButton(onPressed: onPressed, buttonText: 'Confirm'),
                 DialogButton(
                     onPressed: () {
                       Navigator.pop(context);
                     },
                     buttonText: 'Cancel'),
+                DialogButton(onPressed: onPressed, buttonText: 'Confirm'),
               ],
             )
           ],
