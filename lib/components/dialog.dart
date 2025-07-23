@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:notes_app/components/custom_buttons.dart';
+
+import 'custom_buttons.dart';
+
 
 class UserInputDialog extends StatelessWidget {
   final controller;
@@ -35,8 +37,8 @@ class UserInputDialog extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
+                  DialogButton(onPressed: onCancel, buttonText: 'Cancel'),
                   DialogButton(onPressed: onConfirm, buttonText: 'Confirm'),
-                  DialogButton(onPressed: onCancel, buttonText: 'Cancel')
                 ],
               ),
             )

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:notes_app/components/confirm_dialog.dart';
-import 'package:notes_app/components/todo_list.dart';
-import 'package:notes_app/data/database.dart';
+import 'components/confirm_dialog.dart';
 import 'components/dialog.dart';
+import 'components/todo_list.dart';
+import 'data/database.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

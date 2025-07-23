@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:notes_app/components/custom_buttons.dart';
+
+import 'custom_buttons.dart';
 
 class ConfirmDialog extends StatelessWidget {
   ConfirmDialog({super.key, required this.onPressed});
